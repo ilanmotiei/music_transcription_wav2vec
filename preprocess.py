@@ -114,7 +114,9 @@ def labels_df_to_tensor(labels_df, absolute_start_time):
 
 def load_dataset(root_dir, train):
 
-    data = dict()  # of the form {(id, unit_number): (wave_tensor, label_dataframe)}
+    # data = dict()  # of the form {(id, unit_number): (wave_tensor, label_dataframe)}
+    data = defaultdict(lambda: [])  # of the form {id: (all_units_audio_tensor, list of unit_labes_dfs)}
+    # all_units_audio_tensor.shape = (num_units_in_file, cnf.unit_duration * cnf.sampling_rate)
 
     torch_audio_resampler = torchaudio.transforms.Resample(cnf.original_musicnet_sampling_rate,
                                                            cnf.sampling_rate,
@@ -126,9 +128,8 @@ def load_dataset(root_dir, train):
     relevant_files = [filename for filename in os.listdir(data_dir) if len(filename.split('.')[0].split('_')) == 1]
     # ^ : ignoring the files at the dataset that are translated versions (created with the music translation network)
 
-    loaded = 0
     for file in tqdm.tqdm(relevant_files):
-        file_id = file.split('.')[0]
+        file_id = int(file.split('.')[0])
 
         audio_filepath = f'{data_dir}/{file}'
         labels_filepath = f'{labels_dir}/{file_id}.csv'
@@ -140,12 +141,10 @@ def load_dataset(root_dir, train):
         units_labels_dfs = preprocess_df(df=pd.read_csv(labels_filepath), units_in_file=num_units_in_file)
 
         for unit_idx, (unit_audio, unit_labels) in enumerate(zip(units_audios, units_labels_dfs)):
-            data[(int(file_id), unit_idx)] = (unit_audio, unit_labels)
+            # data[(int(file_id), unit_idx)] = (unit_audio, unit_labels)
+            data[file_id].append((unit_audio, unit_labels))
 
-        loaded += 1
-
-        if train and loaded == 10:
-            break
+        data[file_id] = (torch.stack([audio for audio, _ in data[file_id]]), [unit_labels_df for _, unit_labels_df in data[file_id]])
 
     return data
 
