@@ -28,8 +28,6 @@ def resample_dataset(root_dir):
 
 def load_audio(filepath, torch_resampler):
     waveform = torch_resampler(torchaudio.load(filepath)[0]).squeeze(0)
-    print(waveform.shape)
-    print(filepath)
 
     waveform_duration = waveform.size(0) / cnf.sampling_rate  # duration of the audio file in seconds
     num_units = floor(waveform_duration / cnf.unit_duration)
@@ -82,35 +80,35 @@ def preprocess_df(df, units_in_file):
     return seconds_dfs
 
 
-def second_df_to_tensor(second_df, absolute_start_time, unit=1):
+def labels_df_to_tensor(labels_df, absolute_start_time):
     """
-    :param absolute_start_time: of that second in the audio file it is part of.
-    :param second_df: A pandas.DataFrame corresponding to a second an audio file,
+    :param absolute_start_time: of that unit at the audio file it is part of.
+    :param labels_df: A pandas.DataFrame containing labels for a corresponding unit of an audio file,
                       containing the following columns:
                         * absolute_start_time
                         * absolute_end_time
                         * note
-    :param unit: A 'second doesn't have to be a real second. It can be a half second or something else.
-                unit tells us how much real seconds each of our 'second' equals.
 
     :return: A tensor of shape (cnf.bins, cnf.pitch_classes) of 0-1 values indicating which notes were played at each
              bin and what are their values.
     """
 
     t = torch.zeros(size=(cnf.bins, cnf.pitch_classes), dtype=torch.bool)
-    bin_duration = unit / cnf.bins  # The amount of time (in seconds) that each bin equals to.
+    bin_duration = cnf.unit_duration / cnf.bins  # The amount of time (in seconds) that each bin equals to.
 
     for bin in range(cnf.bins):
-        bin_start_time = bin_duration * bin
-        bin_end_time = bin_duration * (bin + 1)
+        bin_start_time = bin_duration * bin + absolute_start_time
+        bin_end_time = bin_duration * (bin + 1) + absolute_start_time
 
-        for _, row in second_df.iterrows():
-            if (bin_start_time >= row['start_time']) and (bin_end_time <= row['end_time']):
+        for _, row in labels_df.iterrows():
+            if (bin_start_time >= row['absolute_start_time']) and (bin_end_time <= row['absolute_end_time']):
                 # The row contains a note that was played during that bin
-                pitch_level = row['note']
+                pitch_level = int(row['note'])
                 pitch_class = pitch_level - 1
 
                 t[bin, pitch_class] = True
+
+                print(bin, pitch_class)
 
     return t
 
@@ -149,7 +147,9 @@ def load_dataset(root_dir, train):
 
 test_data = load_dataset('../../music-translation/musicnet', train=False)
 
-sample_audio, sample_labels = test_data[(2191, 0)]
+sample_file_id = 2191
+sample_unit_idx = 1
+sample_audio, sample_labels = test_data[(sample_file_id, sample_unit_idx)]
 
-print(sample_labels)
+print(labels_df_to_tensor(sample_labels, absolute_start_time=sample_unit_idx * cnf.unit_duration))
 
