@@ -1,0 +1,473 @@
+ --------------- Epoch 1/50000 Training Start --------------- 
+ ------------ Epoch 1/50000 Batch 5/1895 Training Results ------------ 
+Total Loss: 0.6979527231305838
+ ------------ Epoch 1/50000 Batch 10/1895 Training Results ------------ 
+Total Loss: 0.6978811603039503
+ ------------ Epoch 1/50000 Batch 15/1895 Training Results ------------ 
+Total Loss: 0.697901314124465
+ ------------ Epoch 1/50000 Batch 20/1895 Training Results ------------ 
+Total Loss: 0.6978729902766645
+ ------------ Epoch 1/50000 Batch 25/1895 Training Results ------------ 
+Total Loss: 0.6978961639106274
+ ------------ Epoch 1/50000 Batch 30/1895 Training Results ------------ 
+Total Loss: 0.6978773092851043
+ ------------ Epoch 1/50000 Batch 35/1895 Training Results ------------ 
+Total Loss: 0.697873727019344
+ ------------ Epoch 1/50000 Batch 40/1895 Training Results ------------ 
+Total Loss: 0.6978886388242245
+ ------------ Epoch 1/50000 Batch 45/1895 Training Results ------------ 
+Total Loss: 0.6978709881918298
+ ------------ Epoch 1/50000 Batch 50/1895 Training Results ------------ 
+Total Loss: 0.6978648845106363
+ ------------ Epoch 1/50000 Batch 55/1895 Training Results ------------ 
+Total Loss: 0.6974049903113734
+ ------------ Epoch 1/50000 Batch 60/1895 Training Results ------------ 
+Total Loss: 0.6970150109070042
+ ------------ Epoch 1/50000 Batch 65/1895 Training Results ------------ 
+Total Loss: 0.6966908985319046
+ ------------ Epoch 1/50000 Batch 70/1895 Training Results ------------ 
+Total Loss: 0.696443955280951
+ ------------ Epoch 1/50000 Batch 75/1895 Training Results ------------ 
+Total Loss: 0.6961996176590523
+ ------------ Epoch 1/50000 Batch 80/1895 Training Results ------------ 
+Total Loss: 0.6960044224979356
+ ------------ Epoch 1/50000 Batch 85/1895 Training Results ------------ 
+Total Loss: 0.6958262118346551
+ ------------ Epoch 1/50000 Batch 90/1895 Training Results ------------ 
+Total Loss: 0.6956681391845146
+ ------------ Epoch 1/50000 Batch 95/1895 Training Results ------------ 
+Total Loss: 0.6955201590531751
+ ------------ Epoch 1/50000 Batch 100/1895 Training Results ------------ 
+Total Loss: 0.6953951129689813
+ ------------ Epoch 1/50000 Batch 105/1895 Training Results ------------ 
+Total Loss: 0.6949131949139493
+ ------------ Epoch 1/50000 Batch 110/1895 Training Results ------------ 
+Total Loss: 0.6944751904600046
+ ------------ Epoch 1/50000 Batch 115/1895 Training Results ------------ 
+Total Loss: 0.6940980846791164
+ ------------ Epoch 1/50000 Batch 120/1895 Training Results ------------ 
+Total Loss: 0.69373395643197
+ ------------ Epoch 1/50000 Batch 125/1895 Training Results ------------ 
+Total Loss: 0.6933954939246177
+ ------------ Epoch 1/50000 Batch 130/1895 Training Results ------------ 
+Total Loss: 0.693064181205745
+ ------------ Epoch 1/50000 Batch 135/1895 Training Results ------------ 
+Total Loss: 0.6927742329598577
+ ------------ Epoch 1/50000 Batch 140/1895 Training Results ------------ 
+Total Loss: 0.6925136146933905
+ ------------ Epoch 1/50000 Batch 145/1895 Training Results ------------ 
+Total Loss: 0.6922598170309231
+ ------------ Epoch 1/50000 Batch 150/1895 Training Results ------------ 
+Total Loss: 0.6920268923665086
+ ------------ Epoch 1/50000 Batch 155/1895 Training Results ------------ 
+Total Loss: 0.6916691672297255
+ ------------ Epoch 1/50000 Batch 160/1895 Training Results ------------ 
+Total Loss: 0.6913328636437654
+ ------------ Epoch 1/50000 Batch 165/1895 Training Results ------------ 
+Total Loss: 0.6910175911969307
+ ------------ Epoch 1/50000 Batch 170/1895 Training Results ------------ 
+Total Loss: 0.6907041236648664
+ ------------ Epoch 1/50000 Batch 175/1895 Training Results ------------ 
+Total Loss: 0.690428601577878
+ ------------ Epoch 1/50000 Batch 180/1895 Training Results ------------ 
+Total Loss: 0.6901503688034912
+ ------------ Epoch 1/50000 Batch 185/1895 Training Results ------------ 
+Total Loss: 0.6898879808549946
+ ------------ Epoch 1/50000 Batch 190/1895 Training Results ------------ 
+Total Loss: 0.6896487496008998
+ ------------ Epoch 1/50000 Batch 195/1895 Training Results ------------ 
+Total Loss: 0.6894203041417476
+ ------------ Epoch 1/50000 Batch 200/1895 Training Results ------------ 
+Total Loss: 0.6892068481538445
+ ------------ Epoch 1/50000 Batch 205/1895 Training Results ------------ 
+Total Loss: 0.6887664916220961
+ ------------ Epoch 1/50000 Batch 210/1895 Training Results ------------ 
+Total Loss: 0.6883441368561416
+ ------------ Epoch 1/50000 Batch 215/1895 Training Results ------------ 
+Total Loss: 0.6879495214237723
+ ------------ Epoch 1/50000 Batch 220/1895 Training Results ------------ 
+Total Loss: 0.6875675046731803
+ ------------ Epoch 1/50000 Batch 225/1895 Training Results ------------ 
+Total Loss: 0.6872014991111226
+ ------------ Epoch 1/50000 Batch 230/1895 Training Results ------------ 
+Total Loss: 0.6868552704058264
+ ------------ Epoch 1/50000 Batch 235/1895 Training Results ------------ 
+Total Loss: 0.6865132554493686
+ ------------ Epoch 1/50000 Batch 240/1895 Training Results ------------ 
+Total Loss: 0.6861873772383357
+ ------------ Epoch 1/50000 Batch 245/1895 Training Results ------------ 
+Total Loss: 0.6858904636940177
+ ------------ Epoch 1/50000 Batch 250/1895 Training Results ------------ 
+Total Loss: 0.6855933476239443
+ ------------ Epoch 1/50000 Batch 255/1895 Training Results ------------ 
+Total Loss: 0.6851507401933857
+ ------------ Epoch 1/50000 Batch 260/1895 Training Results ------------ 
+Total Loss: 0.6847462206720732
+ ------------ Epoch 1/50000 Batch 265/1895 Training Results ------------ 
+Total Loss: 0.6843430861690134
+ ------------ Epoch 1/50000 Batch 270/1895 Training Results ------------ 
+Total Loss: 0.6839513580349309
+ ------------ Epoch 1/50000 Batch 275/1895 Training Results ------------ 
+Total Loss: 0.6835813114250248
+ ------------ Epoch 1/50000 Batch 280/1895 Training Results ------------ 
+Total Loss: 0.6832322029263845
+ ------------ Epoch 1/50000 Batch 285/1895 Training Results ------------ 
+Total Loss: 0.6828863730882866
+ ------------ Epoch 1/50000 Batch 290/1895 Training Results ------------ 
+Total Loss: 0.6825536298404994
+ ------------ Epoch 1/50000 Batch 295/1895 Training Results ------------ 
+Total Loss: 0.6822309082658109
+ ------------ Epoch 1/50000 Batch 300/1895 Training Results ------------ 
+Total Loss: 0.681916103232652
+ ------------ Epoch 1/50000 Batch 305/1895 Training Results ------------ 
+Total Loss: 0.6815347451044887
+ ------------ Epoch 1/50000 Batch 310/1895 Training Results ------------ 
+Total Loss: 0.6811591445077811
+ ------------ Epoch 1/50000 Batch 315/1895 Training Results ------------ 
+Total Loss: 0.6808028893456572
+ ------------ Epoch 1/50000 Batch 320/1895 Training Results ------------ 
+Total Loss: 0.6804442606517114
+ ------------ Epoch 1/50000 Batch 325/1895 Training Results ------------ 
+Total Loss: 0.6800971226050303
+ ------------ Epoch 1/50000 Batch 330/1895 Training Results ------------ 
+Total Loss: 0.6797655221695701
+ ------------ Epoch 1/50000 Batch 335/1895 Training Results ------------ 
+Total Loss: 0.6794387495506611
+ ------------ Epoch 1/50000 Batch 340/1895 Training Results ------------ 
+Total Loss: 0.6791273012812085
+ ------------ Epoch 1/50000 Batch 345/1895 Training Results ------------ 
+Total Loss: 0.6788305079807406
+ ------------ Epoch 1/50000 Batch 350/1895 Training Results ------------ 
+Total Loss: 0.678528932588441
+ ------------ Epoch 1/50000 Batch 355/1895 Training Results ------------ 
+Total Loss: 0.6781445650882284
+ ------------ Epoch 1/50000 Batch 360/1895 Training Results ------------ 
+Total Loss: 0.6777692657326244
+ ------------ Epoch 1/50000 Batch 365/1895 Training Results ------------ 
+Total Loss: 0.6774125480386493
+ ------------ Epoch 1/50000 Batch 370/1895 Training Results ------------ 
+Total Loss: 0.677053113971409
+ ------------ Epoch 1/50000 Batch 375/1895 Training Results ------------ 
+Total Loss: 0.6767119995007912
+ ------------ Epoch 1/50000 Batch 380/1895 Training Results ------------ 
+Total Loss: 0.6763791270848167
+ ------------ Epoch 1/50000 Batch 385/1895 Training Results ------------ 
+Total Loss: 0.6760590859725104
+ ------------ Epoch 1/50000 Batch 390/1895 Training Results ------------ 
+Total Loss: 0.6757415897953205
+ ------------ Epoch 1/50000 Batch 395/1895 Training Results ------------ 
+Total Loss: 0.6754373382965598
+ ------------ Epoch 1/50000 Batch 400/1895 Training Results ------------ 
+Total Loss: 0.6751362794311717
+ ------------ Epoch 1/50000 Batch 405/1895 Training Results ------------ 
+Total Loss: 0.6747481146436415
+ ------------ Epoch 1/50000 Batch 410/1895 Training Results ------------ 
+Total Loss: 0.6743656597440926
+ ------------ Epoch 1/50000 Batch 415/1895 Training Results ------------ 
+Total Loss: 0.6739952630666365
+ ------------ Epoch 1/50000 Batch 420/1895 Training Results ------------ 
+Total Loss: 0.673632532069903
+ ------------ Epoch 1/50000 Batch 425/1895 Training Results ------------ 
+Total Loss: 0.6732776694218902
+ ------------ Epoch 1/50000 Batch 430/1895 Training Results ------------ 
+Total Loss: 0.672929820951161
+ ------------ Epoch 1/50000 Batch 435/1895 Training Results ------------ 
+Total Loss: 0.6726046046777361
+ ------------ Epoch 1/50000 Batch 440/1895 Training Results ------------ 
+Total Loss: 0.6722782738506794
+ ------------ Epoch 1/50000 Batch 445/1895 Training Results ------------ 
+Total Loss: 0.6719548316944516
+ ------------ Epoch 1/50000 Batch 450/1895 Training Results ------------ 
+Total Loss: 0.6716438709861703
+ ------------ Epoch 1/50000 Batch 455/1895 Training Results ------------ 
+Total Loss: 0.6712707631535583
+ ------------ Epoch 1/50000 Batch 460/1895 Training Results ------------ 
+Total Loss: 0.6709110867434546
+ ------------ Epoch 1/50000 Batch 465/1895 Training Results ------------ 
+Total Loss: 0.6705550059315658
+ ------------ Epoch 1/50000 Batch 470/1895 Training Results ------------ 
+Total Loss: 0.6702018027847751
+ ------------ Epoch 1/50000 Batch 475/1895 Training Results ------------ 
+Total Loss: 0.6698577700084761
+ ------------ Epoch 1/50000 Batch 480/1895 Training Results ------------ 
+Total Loss: 0.6695204071002081
+ ------------ Epoch 1/50000 Batch 485/1895 Training Results ------------ 
+Total Loss: 0.6691929613499298
+ ------------ Epoch 1/50000 Batch 490/1895 Training Results ------------ 
+Total Loss: 0.6688771066160835
+ ------------ Epoch 1/50000 Batch 495/1895 Training Results ------------ 
+Total Loss: 0.6685616919827281
+ ------------ Epoch 1/50000 Batch 500/1895 Training Results ------------ 
+Total Loss: 0.6682584968395531
+ --------------- Epoch 2/50000 Validation Start --------------- 
+Results: --------------- 
+Test Loss: 0.6347384552160898
+Test APS Accuracy: 0.02062823918671586
+Test F1: nan
+Test Recall: nan
+Test Precision: 1.0
+ ------------ Epoch 1/50000 Batch 505/1895 Training Results ------------ 
+Total Loss: 0.6678584552748074
+ ------------ Epoch 1/50000 Batch 510/1895 Training Results ------------ 
+Total Loss: 0.6674685890731566
+ ------------ Epoch 1/50000 Batch 515/1895 Training Results ------------ 
+Total Loss: 0.6670852846384627
+ ------------ Epoch 1/50000 Batch 520/1895 Training Results ------------ 
+Total Loss: 0.6667191575532063
+ ------------ Epoch 1/50000 Batch 525/1895 Training Results ------------ 
+Total Loss: 0.6663520999607586
+ ------------ Epoch 1/50000 Batch 530/1895 Training Results ------------ 
+Total Loss: 0.6659924424306121
+ ------------ Epoch 1/50000 Batch 535/1895 Training Results ------------ 
+Total Loss: 0.6656381587941791
+ ------------ Epoch 1/50000 Batch 540/1895 Training Results ------------ 
+Total Loss: 0.6652916171070602
+ ------------ Epoch 1/50000 Batch 545/1895 Training Results ------------ 
+Total Loss: 0.6649547623931815
+ ------------ Epoch 1/50000 Batch 550/1895 Training Results ------------ 
+Total Loss: 0.6646248062395237
+ ------------ Epoch 1/50000 Batch 555/1895 Training Results ------------ 
+Total Loss: 0.6642316210478008
+ ------------ Epoch 1/50000 Batch 560/1895 Training Results ------------ 
+Total Loss: 0.6638452165394223
+ ------------ Epoch 1/50000 Batch 565/1895 Training Results ------------ 
+Total Loss: 0.6634621327100074
+ ------------ Epoch 1/50000 Batch 570/1895 Training Results ------------ 
+Total Loss: 0.66309187732833
+ ------------ Epoch 1/50000 Batch 575/1895 Training Results ------------ 
+Total Loss: 0.6627250423897868
+ ------------ Epoch 1/50000 Batch 580/1895 Training Results ------------ 
+Total Loss: 0.6623623602028037
+ ------------ Epoch 1/50000 Batch 585/1895 Training Results ------------ 
+Total Loss: 0.6620101404623089
+ ------------ Epoch 1/50000 Batch 590/1895 Training Results ------------ 
+Total Loss: 0.661666688698707
+ ------------ Epoch 1/50000 Batch 595/1895 Training Results ------------ 
+Total Loss: 0.6613221708215585
+ ------------ Epoch 1/50000 Batch 600/1895 Training Results ------------ 
+Total Loss: 0.6609874768958738
+ ------------ Epoch 1/50000 Batch 605/1895 Training Results ------------ 
+Total Loss: 0.6606133674725521
+ ------------ Epoch 1/50000 Batch 610/1895 Training Results ------------ 
+Total Loss: 0.6602425085472279
+ ------------ Epoch 1/50000 Batch 615/1895 Training Results ------------ 
+Total Loss: 0.6598754411911577
+ ------------ Epoch 1/50000 Batch 620/1895 Training Results ------------ 
+Total Loss: 0.6595181410891875
+ ------------ Epoch 1/50000 Batch 625/1895 Training Results ------------ 
+Total Loss: 0.659161028265953
+ ------------ Epoch 1/50000 Batch 630/1895 Training Results ------------ 
+Total Loss: 0.658815130369649
+ ------------ Epoch 1/50000 Batch 635/1895 Training Results ------------ 
+Total Loss: 0.6584756445198312
+ ------------ Epoch 1/50000 Batch 640/1895 Training Results ------------ 
+Total Loss: 0.658138025100925
+ ------------ Epoch 1/50000 Batch 645/1895 Training Results ------------ 
+Total Loss: 0.6578029778085707
+ ------------ Epoch 1/50000 Batch 650/1895 Training Results ------------ 
+Total Loss: 0.6574759673900329
+ ------------ Epoch 1/50000 Batch 655/1895 Training Results ------------ 
+Total Loss: 0.6571199660338746
+ ------------ Epoch 1/50000 Batch 660/1895 Training Results ------------ 
+Total Loss: 0.6567663086973357
+ ------------ Epoch 1/50000 Batch 665/1895 Training Results ------------ 
+Total Loss: 0.6564172999443192
+ ------------ Epoch 1/50000 Batch 670/1895 Training Results ------------ 
+Total Loss: 0.6560717538388362
+ ------------ Epoch 1/50000 Batch 675/1895 Training Results ------------ 
+Total Loss: 0.6557343877438042
+ ------------ Epoch 1/50000 Batch 680/1895 Training Results ------------ 
+Total Loss: 0.6554006365374389
+ ------------ Epoch 1/50000 Batch 685/1895 Training Results ------------ 
+Total Loss: 0.6550742915566385
+ ------------ Epoch 1/50000 Batch 690/1895 Training Results ------------ 
+Total Loss: 0.6547513130404379
+ ------------ Epoch 1/50000 Batch 695/1895 Training Results ------------ 
+Total Loss: 0.6544353262849635
+ ------------ Epoch 1/50000 Batch 700/1895 Training Results ------------ 
+Total Loss: 0.6541231463530234
+ ------------ Epoch 1/50000 Batch 705/1895 Training Results ------------ 
+Total Loss: 0.653767680207677
+ ------------ Epoch 1/50000 Batch 710/1895 Training Results ------------ 
+Total Loss: 0.6534118705730833
+ ------------ Epoch 1/50000 Batch 715/1895 Training Results ------------ 
+Total Loss: 0.653066016486162
+ ------------ Epoch 1/50000 Batch 720/1895 Training Results ------------ 
+Total Loss: 0.6527223156687493
+ ------------ Epoch 1/50000 Batch 725/1895 Training Results ------------ 
+Total Loss: 0.6523811529422628
+ ------------ Epoch 1/50000 Batch 730/1895 Training Results ------------ 
+Total Loss: 0.6520478143548109
+ ------------ Epoch 1/50000 Batch 735/1895 Training Results ------------ 
+Total Loss: 0.6517209405979129
+ ------------ Epoch 1/50000 Batch 740/1895 Training Results ------------ 
+Total Loss: 0.6513942150097038
+ ------------ Epoch 1/50000 Batch 745/1895 Training Results ------------ 
+Total Loss: 0.6510751281908694
+ ------------ Epoch 1/50000 Batch 750/1895 Training Results ------------ 
+Total Loss: 0.6507629872610171
+ ------------ Epoch 1/50000 Batch 755/1895 Training Results ------------ 
+Total Loss: 0.6504030232718646
+ ------------ Epoch 1/50000 Batch 760/1895 Training Results ------------ 
+Total Loss: 0.6500496566418166
+ ------------ Epoch 1/50000 Batch 765/1895 Training Results ------------ 
+Total Loss: 0.6497030671125923
+ ------------ Epoch 1/50000 Batch 770/1895 Training Results ------------ 
+Total Loss: 0.64935779053863
+ ------------ Epoch 1/50000 Batch 775/1895 Training Results ------------ 
+Total Loss: 0.6490191540891125
+ ------------ Epoch 1/50000 Batch 780/1895 Training Results ------------ 
+Total Loss: 0.6486827107026982
+ ------------ Epoch 1/50000 Batch 785/1895 Training Results ------------ 
+Total Loss: 0.6483514666272576
+ ------------ Epoch 1/50000 Batch 790/1895 Training Results ------------ 
+Total Loss: 0.648023298458208
+ ------------ Epoch 1/50000 Batch 795/1895 Training Results ------------ 
+Total Loss: 0.6477043235897081
+ ------------ Epoch 1/50000 Batch 800/1895 Training Results ------------ 
+Total Loss: 0.6473879105760716
+ ------------ Epoch 1/50000 Batch 805/1895 Training Results ------------ 
+Total Loss: 0.6470306445584164
+ ------------ Epoch 1/50000 Batch 810/1895 Training Results ------------ 
+Total Loss: 0.6466812543272052
+ ------------ Epoch 1/50000 Batch 815/1895 Training Results ------------ 
+Total Loss: 0.6463330712146554
+ ------------ Epoch 1/50000 Batch 820/1895 Training Results ------------ 
+Total Loss: 0.6459954157812384
+ ------------ Epoch 1/50000 Batch 825/1895 Training Results ------------ 
+Total Loss: 0.6456570923892837
+ ------------ Epoch 1/50000 Batch 830/1895 Training Results ------------ 
+Total Loss: 0.6453225884519248
+ ------------ Epoch 1/50000 Batch 835/1895 Training Results ------------ 
+Total Loss: 0.6449909297425946
+ ------------ Epoch 1/50000 Batch 840/1895 Training Results ------------ 
+Total Loss: 0.6446657257731117
+ ------------ Epoch 1/50000 Batch 845/1895 Training Results ------------ 
+Total Loss: 0.6443421721193917
+ ------------ Epoch 1/50000 Batch 850/1895 Training Results ------------ 
+Total Loss: 0.6440260302932823
+ ------------ Epoch 1/50000 Batch 855/1895 Training Results ------------ 
+Total Loss: 0.6436723656952381
+ ------------ Epoch 1/50000 Batch 860/1895 Training Results ------------ 
+Total Loss: 0.6433213443148794
+ ------------ Epoch 1/50000 Batch 865/1895 Training Results ------------ 
+Total Loss: 0.6429757606345794
+ ------------ Epoch 1/50000 Batch 870/1895 Training Results ------------ 
+Total Loss: 0.6426383489635826
+ ------------ Epoch 1/50000 Batch 875/1895 Training Results ------------ 
+Total Loss: 0.6423037714191846
+ ------------ Epoch 1/50000 Batch 880/1895 Training Results ------------ 
+Total Loss: 0.64196954020934
+ ------------ Epoch 1/50000 Batch 885/1895 Training Results ------------ 
+Total Loss: 0.6416422781129342
+ ------------ Epoch 1/50000 Batch 890/1895 Training Results ------------ 
+Total Loss: 0.6413143488128533
+ ------------ Epoch 1/50000 Batch 895/1895 Training Results ------------ 
+Total Loss: 0.640993721668697
+ ------------ Epoch 1/50000 Batch 900/1895 Training Results ------------ 
+Total Loss: 0.6406753188930452
+ ------------ Epoch 1/50000 Batch 905/1895 Training Results ------------ 
+Total Loss: 0.6403316687072179
+ ------------ Epoch 1/50000 Batch 910/1895 Training Results ------------ 
+Total Loss: 0.6399906081771785
+ ------------ Epoch 1/50000 Batch 915/1895 Training Results ------------ 
+Total Loss: 0.6396563671773574
+ ------------ Epoch 1/50000 Batch 920/1895 Training Results ------------ 
+Total Loss: 0.6393251876832674
+ ------------ Epoch 1/50000 Batch 925/1895 Training Results ------------ 
+Total Loss: 0.6389974448326472
+ ------------ Epoch 1/50000 Batch 930/1895 Training Results ------------ 
+Total Loss: 0.6386727635418216
+ ------------ Epoch 1/50000 Batch 935/1895 Training Results ------------ 
+Total Loss: 0.6383501269162338
+ ------------ Epoch 1/50000 Batch 940/1895 Training Results ------------ 
+Total Loss: 0.6380317047079826
+ ------------ Epoch 1/50000 Batch 945/1895 Training Results ------------ 
+Total Loss: 0.6377169289798649
+ ------------ Epoch 1/50000 Batch 950/1895 Training Results ------------ 
+Total Loss: 0.6374052173801159
+ ------------ Epoch 1/50000 Batch 955/1895 Training Results ------------ 
+Total Loss: 0.6370718131105158
+ ------------ Epoch 1/50000 Batch 960/1895 Training Results ------------ 
+Total Loss: 0.6367432179589135
+ ------------ Epoch 1/50000 Batch 965/1895 Training Results ------------ 
+Total Loss: 0.6364168612276797
+ ------------ Epoch 1/50000 Batch 970/1895 Training Results ------------ 
+Total Loss: 0.6360942419119102
+ ------------ Epoch 1/50000 Batch 975/1895 Training Results ------------ 
+Total Loss: 0.6357747023590864
+ ------------ Epoch 1/50000 Batch 980/1895 Training Results ------------ 
+Total Loss: 0.6354577071983747
+ ------------ Epoch 1/50000 Batch 985/1895 Training Results ------------ 
+Total Loss: 0.6351457587277829
+ ------------ Epoch 1/50000 Batch 990/1895 Training Results ------------ 
+Total Loss: 0.6348380627994886
+ ------------ Epoch 1/50000 Batch 995/1895 Training Results ------------ 
+Total Loss: 0.634532253487251
+ ------------ Epoch 1/50000 Batch 1000/1895 Training Results ------------ 
+Total Loss: 0.6342287956271321
+ --------------- Epoch 2/50000 Validation Start --------------- 
+Results: --------------- 
+Test Loss: 0.5692354490359625
+Test APS Accuracy: 0.020526532955074415
+Test F1: nan
+Test Recall: nan
+Test Precision: 1.0
+ ------------ Epoch 1/50000 Batch 1005/1895 Training Results ------------ 
+Total Loss: 0.633902194312037
+ ------------ Epoch 1/50000 Batch 1010/1895 Training Results ------------ 
+Total Loss: 0.6335765664640924
+ ------------ Epoch 1/50000 Batch 1015/1895 Training Results ------------ 
+Total Loss: 0.6332571675147622
+ ------------ Epoch 1/50000 Batch 1020/1895 Training Results ------------ 
+Total Loss: 0.6329394236444404
+ ------------ Epoch 1/50000 Batch 1025/1895 Training Results ------------ 
+Total Loss: 0.6326259956581564
+ ------------ Epoch 1/50000 Batch 1030/1895 Training Results ------------ 
+Total Loss: 0.6323135581355795
+ ------------ Epoch 1/50000 Batch 1035/1895 Training Results ------------ 
+Total Loss: 0.632005607628304
+ ------------ Epoch 1/50000 Batch 1040/1895 Training Results ------------ 
+Total Loss: 0.6317015535807093
+ ------------ Epoch 1/50000 Batch 1045/1895 Training Results ------------ 
+Total Loss: 0.6313994086155909
+ ------------ Epoch 1/50000 Batch 1050/1895 Training Results ------------ 
+Total Loss: 0.6311002857983112
+ ------------ Epoch 1/50000 Batch 1055/1895 Training Results ------------ 
+Total Loss: 0.6307815877782508
+ ------------ Epoch 1/50000 Batch 1060/1895 Training Results ------------ 
+Total Loss: 0.6304649228036825
+ ------------ Epoch 1/50000 Batch 1065/1895 Training Results ------------ 
+Total Loss: 0.6301504534454972
+ ------------ Epoch 1/50000 Batch 1070/1895 Training Results ------------ 
+Total Loss: 0.6298388978118233
+ ------------ Epoch 1/50000 Batch 1075/1895 Training Results ------------ 
+Total Loss: 0.6295298127847355
+ ------------ Epoch 1/50000 Batch 1080/1895 Training Results ------------ 
+Total Loss: 0.6292260111378575
+ ------------ Epoch 1/50000 Batch 1085/1895 Training Results ------------ 
+Total Loss: 0.6289235949258788
+ ------------ Epoch 1/50000 Batch 1090/1895 Training Results ------------ 
+Total Loss: 0.6286235698797834
+ ------------ Epoch 1/50000 Batch 1095/1895 Training Results ------------ 
+Total Loss: 0.6283270077329112
+ ------------ Epoch 1/50000 Batch 1100/1895 Training Results ------------ 
+Total Loss: 0.6280330305665054
+ ------------ Epoch 1/50000 Batch 1105/1895 Training Results ------------ 
+Total Loss: 0.6277208032752324
+ ------------ Epoch 1/50000 Batch 1110/1895 Training Results ------------ 
+Total Loss: 0.6274110330939964
+ ------------ Epoch 1/50000 Batch 1115/1895 Training Results ------------ 
+Total Loss: 0.627106433700887
+ ------------ Epoch 1/50000 Batch 1120/1895 Training Results ------------ 
+Total Loss: 0.6268035691547473
+ ------------ Epoch 1/50000 Batch 1125/1895 Training Results ------------ 
+Total Loss: 0.6265041003210677
+ ------------ Epoch 1/50000 Batch 1130/1895 Training Results ------------ 
+Total Loss: 0.6262052073184632
+ ------------ Epoch 1/50000 Batch 1135/1895 Training Results ------------ 
+Total Loss: 0.6259092021454536
+ ------------ Epoch 1/50000 Batch 1140/1895 Training Results ------------ 
+Total Loss: 0.6256184696317896
+ ------------ Epoch 1/50000 Batch 1145/1895 Training Results ------------ 
+Total Loss: 0.6253282857172223

@@ -128,6 +128,8 @@ def load_dataset(root_dir, train):
     relevant_files = [filename for filename in os.listdir(data_dir) if len(filename.split('.')[0].split('_')) == 1]
     # ^ : ignoring the files at the dataset that are translated versions (created with the music translation network)
 
+
+    loaded = 0
     for file in tqdm.tqdm(relevant_files):
         file_id = int(file.split('.')[0])
 
@@ -145,6 +147,11 @@ def load_dataset(root_dir, train):
             data[file_id].append((unit_audio, unit_labels))
 
         data[file_id] = (torch.stack([audio for audio, _ in data[file_id]]), [unit_labels_df for _, unit_labels_df in data[file_id]])
+
+        loaded += 1
+
+        # if train and loaded == 10:
+        #     break
 
     return data
 

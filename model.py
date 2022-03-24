@@ -39,5 +39,6 @@ class Transcriptor(nn.Module):
         return probs > pred_threshold
 
     def get_probs_from_logits(self, logits):
+
         return torch.sigmoid(logits)
 
