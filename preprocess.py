@@ -152,4 +152,3 @@ if __name__ == "__main__":
     sample_audio, sample_labels = test_data[(sample_file_id, sample_unit_idx)]
 
     print(labels_df_to_tensor(sample_labels, absolute_start_time=sample_unit_idx * cnf.unit_duration))
-

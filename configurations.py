@@ -8,3 +8,6 @@ num_samples_in_unit = int(unit_duration * sampling_rate)  # amount of audio samp
 
 musicnet_data_path = '../../music-translation/musicnet'
 
+wav2vec_model = 'facebook/wav2vec2-base-960h'
+wav2vec_model_embedding_dim = 768
+
