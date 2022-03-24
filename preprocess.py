@@ -108,8 +108,6 @@ def labels_df_to_tensor(labels_df, absolute_start_time):
 
                 t[bin, pitch_class] = True
 
-                print(bin, pitch_class)
-
     return t
 
 
@@ -128,6 +126,7 @@ def load_dataset(root_dir, train):
         file_id = file.split('.')[0]
 
         if len(file_id.split('_')) >= 2:
+            # ignoring files at the dataset that were translated using the music translation network
             continue
 
         audio_filepath = f'{data_dir}/{file}'
@@ -145,11 +144,12 @@ def load_dataset(root_dir, train):
     return data
 
 
-test_data = load_dataset('../../music-translation/musicnet', train=False)
+if __name__ == "__main__":
+    test_data = load_dataset('../../music-translation/musicnet', train=False)
 
-sample_file_id = 2191
-sample_unit_idx = 1
-sample_audio, sample_labels = test_data[(sample_file_id, sample_unit_idx)]
+    sample_file_id = 2191
+    sample_unit_idx = 1
+    sample_audio, sample_labels = test_data[(sample_file_id, sample_unit_idx)]
 
-print(labels_df_to_tensor(sample_labels, absolute_start_time=sample_unit_idx * cnf.unit_duration))
+    print(labels_df_to_tensor(sample_labels, absolute_start_time=sample_unit_idx * cnf.unit_duration))
 
