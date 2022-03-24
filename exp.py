@@ -3,7 +3,6 @@ import pandas as pd
 import torch
 
 
-
 if __name__ == "__main__":
     df = pd.read_csv('2191.csv')
 

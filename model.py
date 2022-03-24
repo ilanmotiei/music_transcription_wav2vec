@@ -1,7 +1,7 @@
 
 import torch
 from torch import nn
-from transformers import AutoModel, Wav2Vec2PreTrainedModel
+from transformers import Wav2Vec2Model, AutoModel
 import configurations as cnf
 
 
@@ -11,13 +11,20 @@ class Transcriptor(nn.Module):
         super().__init__()
 
         self.wav2vec2 = AutoModel.from_pretrained(cnf.wav2vec_model)
+        self.wav2vec2.freeze_feature_encoder()
         self.linear = nn.Linear(in_features=cnf.wav2vec_model_embedding_dim, out_features=cnf.pitch_classes)
+
+        torch.nn.init.xavier_uniform(self.linear.weight)
+        self.linear.bias.data.fill_(0.01)
 
     def forward(self, audio):
         """
         :param audio: A tensor of shape (batch_size, cnf.unit_duration * cnf.sampling_rate)
         :return: A tensor of shape (batch_size, cnf.bins, cnf.pitch_classes) containing the *- logits -* of the model.
         """
+
+        var, mean = torch.var_mean(audio, dim=1, keepdim=True)  # shapes = (batch_size, 1)
+        audio = (audio - mean) / (torch.sqrt(var) + 1e-08)
 
         embeddings = self.wav2vec2(audio).last_hidden_state
         # ^ : shape = (batch_size, cnf.bins, cnf.wav2vec_model_embedding_dim)

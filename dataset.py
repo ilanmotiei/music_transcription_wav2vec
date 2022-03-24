@@ -1,9 +1,8 @@
 
-import torch
 from torch.utils.data import Dataset
 from preprocess import load_dataset, labels_df_to_tensor
 import configurations as cnf
-from collections import defaultdict
+import random
 
 
 class MusicNetDataset(Dataset):
@@ -31,5 +30,13 @@ class MusicNetDataset(Dataset):
 
         unit_label_tensor = labels_df_to_tensor(labels_df=unit_label_df,
                                                 absolute_start_time=unit_idx * cnf.unit_duration)
+
+        if self.train:
+            # do augmentation
+            # coin = random.randint(0, 1)
+            # if coin == 1:
+            #     # augment the audio by changing its loudness
+            #     unit_audio = random.uniform(0.5, 1.5) * unit_audio
+            pass
 
         return unit_audio, unit_label_tensor

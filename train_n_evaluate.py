@@ -12,10 +12,13 @@ from os import path
 import os
 import sys
 import numpy as np
+from torch.nn.utils import clip_grad_value_
 
 
-def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader, loss_criterion):
+def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader):
     print(f" --------------- Epoch {epoch}/{cnf.epochs} Training Start --------------- ", file=cnf.logs_file)
+
+    loss_criterion = nn.BCEWithLogitsLoss()
 
     model.train()
     epoch_loss = 0
@@ -33,6 +36,9 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
             loss.backward()
 
             if ((batch_idx + 1) % cnf.update_every_n_batches == 0) or (batch_idx == len(train_dataloader) - 1):
+                if cnf.clip_grad:
+                    clip_grad_value_(model.parameters(), clip_value=cnf.grad_clip_value)
+
                 optimizer.step()
                 optimizer.zero_grad()
                 torch.cuda.empty_cache()
@@ -47,8 +53,7 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
             if (batch_idx + 1) % cnf.checkpoint_every == 0:
                 validate(model=model,
                          epoch=epoch,
-                         validation_dataloader=validation_dataloader,
-                         loss_criterion=loss_criterion)
+                         validation_dataloader=validation_dataloader)
 
                 torch.save(model.state_dict(), f'{cnf.models_dir}/model_epoch={epoch}.pth')
                 model.train()
@@ -59,9 +64,11 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
     print(f"Training Loss: {epoch_loss}", file=cnf.logs_file)
 
 
-def validate(model, epoch, validation_dataloader, loss_criterion):
+def validate(model, epoch, validation_dataloader):
     print(f" --------------- Epoch {epoch + 1}/{cnf.epochs} Validation Start --------------- ", file=cnf.logs_file)
     model.eval()
+
+    loss_criterion = nn.BCEWithLogitsLoss()
 
     loss = 0
     aps_accuracy = 0
@@ -147,15 +154,12 @@ if __name__ == "__main__":
                                        shuffle=False,
                                        num_workers=cnf.num_workers)
 
-    loss_criterion = nn.BCEWithLogitsLoss()
-
     for epoch_idx in range(cnf.current_epoch_num, cnf.current_epoch_num + cnf.epochs):
         train_epoch(model=model,
                     epoch=epoch_idx + 1,
                     optimizer=optimizer,
                     train_dataloader=train_dataloader,
-                    validation_dataloader=validation_dataloader,
-                    loss_criterion=loss_criterion)
+                    validation_dataloader=validation_dataloader)
 
         if not path.exists(cnf.models_dir):
             os.mkdir(cnf.models_dir)
@@ -165,5 +169,4 @@ if __name__ == "__main__":
 
         validate(model=model,
                  epoch=epoch_idx,
-                 validation_dataloader=validation_dataloader,
-                 loss_criterion=loss_criterion)
+                 validation_dataloader=validation_dataloader)
