@@ -7,6 +7,7 @@ import pandas as pd
 from collections import defaultdict
 import torch
 import torchaudio
+import tqdm
 
 
 def resample_dataset(root_dir):
@@ -122,7 +123,7 @@ def load_dataset(root_dir, train):
     data_dir = root_dir + '/train_data' if train else root_dir + '/test_data'
     labels_dir = root_dir + '/train_labels' if train else root_dir + '/test_labels'
 
-    for file in os.listdir(data_dir):
+    for file in tqdm.tqdm(os.listdir(data_dir)):
         file_id = file.split('.')[0]
 
         if len(file_id.split('_')) >= 2:
