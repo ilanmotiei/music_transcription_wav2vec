@@ -13,10 +13,11 @@ import os
 
 
 def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader, loss_criterion):
-    print(f" --------------- Epoch {epoch + 1}/{cnf.epochs} Training Start --------------- ", file=cnf.logs_file)
+    print(f" --------------- Epoch {epoch}/{cnf.epochs} Training Start --------------- ", file=cnf.logs_file)
 
-    epoch_loss = 0
     model.train()
+    epoch_loss = 0
+    optimizer.zero_grad()
 
     with torch.set_grad_enabled(True):
         for batch_idx, (batch_audio, batch_target_labels) in tqdm.tqdm(enumerate(train_dataloader)):
@@ -37,7 +38,7 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
             epoch_loss += loss.item() * cnf.update_every_n_batches
 
             if (batch_idx + 1) % cnf.train_print_every == 0:
-                print(f" ------------ Epoch {epoch + 1}/{cnf.epochs} Batch {batch_idx + 1}/{len(train_dataloader)} Training Results ------------ ", file=cnf.logs_file)
+                print(f" ------------ Epoch {epoch}/{cnf.epochs} Batch {batch_idx + 1}/{len(train_dataloader)} Training Results ------------ ", file=cnf.logs_file)
                 print(f"Total Loss: {epoch_loss / (batch_idx + 1)}", file=cnf.logs_file)
 
             if (batch_idx + 1) % cnf.checkpoint_every == 0:
@@ -46,12 +47,12 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
                          validation_dataloader=validation_dataloader,
                          loss_criterion=loss_criterion)
 
-                torch.save(model.state_dict(), f'{cnf.models_dir}/model_epoch={epoch + 1}.pth')
+                torch.save(model.state_dict(), f'{cnf.models_dir}/model_epoch={epoch}.pth')
                 model.train()
 
     epoch_loss /= len(train_dataloader)
 
-    print(f" --------------------- Epoch {epoch + 1}/{cnf.epochs} Final Training Results ------------------------ ", file=cnf.logs_file)
+    print(f" --------------------- Epoch {epoch}/{cnf.epochs} Final Training Results ------------------------ ", file=cnf.logs_file)
     print(f"Training Loss: {epoch_loss}", file=cnf.logs_file)
 
 
@@ -85,7 +86,7 @@ def validate(model, epoch, validation_dataloader, loss_criterion):
     print(f"Test APS Accuracy: {aps_accuracy / len(validation_dataloader)}")
 
 
-def train(cnf):
+if __name__ == "__main__":
     model = Transcriptor().to(cnf.device)
 
     if not (cnf.model_checkpoint is None):
@@ -114,7 +115,7 @@ def train(cnf):
 
     for epoch_idx in range(cnf.current_epoch_num, cnf.current_epoch_num + cnf.epochs):
         train_epoch(model=model,
-                    epoch=epoch_idx,
+                    epoch=epoch_idx + 1,
                     optimizer=optimizer,
                     train_dataloader=train_dataloader,
                     validation_dataloader=validation_dataloader,

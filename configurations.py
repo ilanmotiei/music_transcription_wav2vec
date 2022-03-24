@@ -15,7 +15,15 @@ epochs = 50000
 logs_file = 'logs.txt'
 update_every_n_batches = 50  # for gradient accumulation - amount of steps between each .step() call
 train_print_every = 500  # amount of batches between each print
-checkpoint_every = 500  # amount of batches processed between each checkpoint.
-# In each checkpoint we're doing validation and saving the model.
+checkpoint_every = 500  # amount of batches processed between each checkpoint. # In each checkpoint we're doing validation and saving the model.
 models_dir = 'models'
+batch_size = 64
+lr = 1e-03
+weight_decay = 0.01
+num_workers = 20
+
+current_epoch_num = 1
+model_checkpoint = None  # place here a model's checkpoint path if you want to continue to train from there
+optimizer_checkpoint = None  # place here an optimizer's checkpoint path if you want to continue to train from it
+
 
