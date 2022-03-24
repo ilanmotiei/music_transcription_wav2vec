@@ -34,7 +34,10 @@ class Transcriptor(nn.Module):
                  are present at which bins.
         """
 
-        probs = nn.functional.sigmoid(logits)
+        probs = self.get_probs_from_logits(logits)
 
         return probs > pred_threshold
+
+    def get_probs_from_logits(self, logits):
+        return torch.sigmoid(logits)
 

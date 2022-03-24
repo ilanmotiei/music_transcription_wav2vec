@@ -11,6 +11,7 @@ from torch.utils.data import DataLoader
 from os import path
 import os
 import sys
+import numpy as np
 
 
 def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader, loss_criterion):
@@ -60,7 +61,6 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
 
 def validate(model, epoch, validation_dataloader, loss_criterion):
     print(f" --------------- Epoch {epoch + 1}/{cnf.epochs} Validation Start --------------- ", file=cnf.logs_file)
-
     model.eval()
 
     loss = 0
@@ -74,19 +74,18 @@ def validate(model, epoch, validation_dataloader, loss_criterion):
             batch_logits = model(batch_audios)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
             batch_loss = loss_criterion(batch_logits, batch_target_labels.float())
 
-            batch_predictions = model.predict_from_logits(batch_logits,
-                                                          pred_threshold=cnf.pitch_prediction_threshold)
+            batch_probs = model.get_probs_from_logits(batch_logits)
             # ^ : shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
             numpyed_batch_targets = batch_target_labels.cpu().detach().numpy().astype(int)
-            numpyed_batch_predictions = batch_predictions.cpu().detach().numpy().astype(int)
+            numpyed_batch_probs = batch_probs.cpu().detach().numpy().astype(float)
 
             curr_batch_size = numpyed_batch_targets.shape[0]
 
             batch_aps_accuracy = 0
             for idx in range(curr_batch_size):
                 batch_aps_accuracy += average_precision_score(y_true=numpyed_batch_targets[idx],
-                                                              y_score=numpyed_batch_predictions[idx])
+                                                              y_score=numpyed_batch_probs[idx])
 
             batch_aps_accuracy /= curr_batch_size
 

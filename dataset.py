@@ -1,4 +1,5 @@
 
+import torch
 from torch.utils.data import Dataset
 from preprocess import load_dataset, labels_df_to_tensor
 import configurations as cnf

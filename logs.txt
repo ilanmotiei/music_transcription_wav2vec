@@ -1,0 +1,33 @@
+ --------------- Epoch 2/50000 Training Start --------------- 
+ ------------ Epoch 2/50000 Batch 5/5 Training Results ------------ 
+Total Loss: 0.6958481948822737
+ --------------------- Epoch 2/50000 Final Training Results ------------------------ 
+Training Loss: 0.6958481948822737
+ --------------- Epoch 2/50000 Validation Start --------------- 
+Results: --------------- 
+Test Loss: 0.6361526673038801
+Test APS Accuracy: 0.020011125213250745
+ --------------- Epoch 3/50000 Training Start --------------- 
+ ------------ Epoch 3/50000 Batch 5/5 Training Results ------------ 
+Total Loss: 0.6396335922181606
+ --------------------- Epoch 3/50000 Final Training Results ------------------------ 
+Training Loss: 0.6396335922181606
+ --------------- Epoch 3/50000 Validation Start --------------- 
+Results: --------------- 
+Test Loss: 0.5585640991727511
+Test APS Accuracy: 0.019345570815076166
+ --------------- Epoch 4/50000 Training Start --------------- 
+ ------------ Epoch 4/50000 Batch 5/5 Training Results ------------ 
+Total Loss: 0.5603702738881111
+ --------------------- Epoch 4/50000 Final Training Results ------------------------ 
+Training Loss: 0.5603702738881111
+ --------------- Epoch 4/50000 Validation Start --------------- 
+Results: --------------- 
+Test Loss: 0.48346666246652603
+Test APS Accuracy: 0.019317618345066904
+ --------------- Epoch 5/50000 Training Start --------------- 
+ ------------ Epoch 5/50000 Batch 5/5 Training Results ------------ 
+Total Loss: 0.48439093865454197
+ --------------------- Epoch 5/50000 Final Training Results ------------------------ 
+Training Loss: 0.48439093865454197
+ --------------- Epoch 5/50000 Validation Start --------------- 
