@@ -1,3 +1,5 @@
+import torch
+
 
 original_musicnet_sampling_rate = 44100
 sampling_rate = 16000
@@ -10,9 +12,9 @@ wav2vec_model = 'facebook/wav2vec2-base-960h'
 wav2vec_model_embedding_dim = 768
 
 musicnet_data_path = '../../music-translation/musicnet'
-device = 'cuda: 0'
+device = torch.device('cuda')
 epochs = 50000
-logs_file = 'logs.txt'
+logs_file = open('logs.txt', 'w')
 update_every_n_batches = 50  # for gradient accumulation - amount of steps between each .step() call
 train_print_every = 500  # amount of batches between each print
 checkpoint_every = 500  # amount of batches processed between each checkpoint. # In each checkpoint we're doing validation and saving the model.
@@ -26,4 +28,4 @@ current_epoch_num = 1
 model_checkpoint = None  # place here a model's checkpoint path if you want to continue to train from there
 optimizer_checkpoint = None  # place here an optimizer's checkpoint path if you want to continue to train from it
 
-
+pitch_prediction_threshold = 0.7

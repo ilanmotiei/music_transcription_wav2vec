@@ -19,10 +19,22 @@ class Transcriptor(nn.Module):
         :return: A tensor of shape (batch_size, cnf.bins, cnf.pitch_classes) containing the *- logits -* of the model.
         """
 
-        embeddings = self.wav2vec2(audio)  # shape = (batch_size, cnf.bins, cnf.wav2vec_model_embedding_dim)
+        embeddings = self.wav2vec2(audio).last_hidden_state
+        # ^ : shape = (batch_size, cnf.bins, cnf.wav2vec_model_embedding_dim)
+
         logits = self.linear(embeddings)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
         return logits
 
+    def predict_from_logits(self, logits, pred_threshold):
+        """
+        :param logits: A tensor of shape (batch_size, cnf.bins, cnf.pitch_classes) containing the logits of the model.
+        :param pred_threshold: The minimum confidence score required for a pitch to be predicted.
+        :return: A boolean tensor of shape (batch_size, cnf.bins, cnf.pitch_classes) that indicates which pitches
+                 are present at which bins.
+        """
 
+        probs = nn.functional.sigmoid(logits)
+
+        return probs > pred_threshold
 

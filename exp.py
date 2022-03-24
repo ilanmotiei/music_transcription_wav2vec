@@ -1,5 +1,6 @@
 
 import pandas as pd
+import torch
 
 
 
@@ -8,3 +9,5 @@ if __name__ == "__main__":
 
     for i, row in df.iterrows():
         row['start_time']
+
+print(torch.cuda.is_available())

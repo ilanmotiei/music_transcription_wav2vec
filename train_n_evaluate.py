@@ -10,6 +10,7 @@ from torch.optim.adamw import AdamW
 from torch.utils.data import DataLoader
 from os import path
 import os
+import sys
 
 
 def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader, loss_criterion):
@@ -25,7 +26,7 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
             batch_target_labels = batch_target_labels.to(cnf.device)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
             model_logits = model(batch_audio)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
-            loss = loss_criterion(model_logits, batch_target_labels)
+            loss = loss_criterion(model_logits, batch_target_labels.float())
 
             loss = loss / cnf.update_every_n_batches
             loss.backward()
@@ -38,7 +39,8 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
             epoch_loss += loss.item() * cnf.update_every_n_batches
 
             if (batch_idx + 1) % cnf.train_print_every == 0:
-                print(f" ------------ Epoch {epoch}/{cnf.epochs} Batch {batch_idx + 1}/{len(train_dataloader)} Training Results ------------ ", file=cnf.logs_file)
+                print(f" ------------ Epoch {epoch}/{cnf.epochs} Batch {batch_idx + 1}/{len(train_dataloader)} Training Results ------------ ",
+                      file=cnf.logs_file)
                 print(f"Total Loss: {epoch_loss / (batch_idx + 1)}", file=cnf.logs_file)
 
             if (batch_idx + 1) % cnf.checkpoint_every == 0:
@@ -70,20 +72,31 @@ def validate(model, epoch, validation_dataloader, loss_criterion):
             batch_target_labels = batch_target_labels.to(cnf.device)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
             batch_logits = model(batch_audios)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
-            batch_loss = loss_criterion(batch_logits, batch_target_labels)
+            batch_loss = loss_criterion(batch_logits, batch_target_labels.float())
 
-            batch_probs = nn.functional.sigmoid(batch_logits)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
+            batch_predictions = model.predict_from_logits(batch_logits,
+                                                          pred_threshold=cnf.pitch_prediction_threshold)
+            # ^ : shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
-            batch_aps_accuracy = average_precision_score(y_true=batch_target_labels.cpu().detach().numpy(),
-                                                         y_score=batch_probs.cpu().detach().numpy())
+            numpyed_batch_targets = batch_target_labels.cpu().detach().numpy().astype(int)
+            numpyed_batch_predictions = batch_predictions.cpu().detach().numpy().astype(int)
+
+            curr_batch_size = numpyed_batch_targets.shape[0]
+
+            batch_aps_accuracy = 0
+            for idx in range(curr_batch_size):
+                batch_aps_accuracy += average_precision_score(y_true=numpyed_batch_targets[idx],
+                                                              y_score=numpyed_batch_predictions[idx])
+
+            batch_aps_accuracy /= curr_batch_size
 
             loss += batch_loss.item()
             aps_accuracy += batch_aps_accuracy
 
     print("Results: --------------- ", file=cnf.logs_file)
 
-    print(f"Test Loss: {loss / (len(validation_dataloader))}")
-    print(f"Test APS Accuracy: {aps_accuracy / len(validation_dataloader)}")
+    print(f"Test Loss: {loss / (len(validation_dataloader))}", file=cnf.logs_file)
+    print(f"Test APS Accuracy: {aps_accuracy / len(validation_dataloader)}", file=cnf.logs_file)
 
 
 if __name__ == "__main__":

@@ -123,12 +123,12 @@ def load_dataset(root_dir, train):
     data_dir = root_dir + '/train_data' if train else root_dir + '/test_data'
     labels_dir = root_dir + '/train_labels' if train else root_dir + '/test_labels'
 
-    for file in tqdm.tqdm(os.listdir(data_dir)):
-        file_id = file.split('.')[0]
+    relevant_files = [filename for filename in os.listdir(data_dir) if len(filename.split('.')[0].split('_')) == 1]
+    # ^ : ignoring the files at the dataset that are translated versions (created with the music translation network)
 
-        if len(file_id.split('_')) >= 2:
-            # ignoring files at the dataset that were translated using the music translation network
-            continue
+    loaded = 0
+    for file in tqdm.tqdm(relevant_files):
+        file_id = file.split('.')[0]
 
         audio_filepath = f'{data_dir}/{file}'
         labels_filepath = f'{labels_dir}/{file_id}.csv'
@@ -141,6 +141,11 @@ def load_dataset(root_dir, train):
 
         for unit_idx, (unit_audio, unit_labels) in enumerate(zip(units_audios, units_labels_dfs)):
             data[(int(file_id), unit_idx)] = (unit_audio, unit_labels)
+
+        loaded += 1
+
+        if train and loaded == 10:
+            break
 
     return data
 

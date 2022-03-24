@@ -20,6 +20,9 @@ class MusicNetDataset(Dataset):
 
         self.index_to_key = {i: (file_id, unit_idx) for i, (file_id, unit_idx) in enumerate(self.data.keys())}
 
+    def __len__(self):
+        return len(self.index_to_key.keys())
+
     def __getitem__(self, item):
         file_id, unit_idx = self.index_to_key[item]
         unit_audio, unit_label_df = self.data[(file_id, unit_idx)]
