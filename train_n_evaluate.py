@@ -8,7 +8,7 @@ from model import Transcriptor
 from dataset import MusicNetDataset
 from torch.optim.adamw import AdamW
 from torch.utils.data import DataLoader
-import pathlib
+from os import path
 import os
 
 
@@ -130,4 +130,3 @@ def train(cnf):
                  epoch=epoch_idx,
                  validation_dataloader=validation_dataloader,
                  loss_criterion=loss_criterion)
-

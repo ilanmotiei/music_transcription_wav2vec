@@ -11,3 +11,11 @@ wav2vec_model_embedding_dim = 768
 
 musicnet_data_path = '../../music-translation/musicnet'
 device = 'cuda: 0'
+epochs = 50000
+logs_file = 'logs.txt'
+update_every_n_batches = 50  # for gradient accumulation - amount of steps between each .step() call
+train_print_every = 500  # amount of batches between each print
+checkpoint_every = 500  # amount of batches processed between each checkpoint.
+# In each checkpoint we're doing validation and saving the model.
+models_dir = 'models'
+
