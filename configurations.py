@@ -26,8 +26,8 @@ num_workers = 20
 clip_grad = True
 grad_clip_value = 1
 
-current_epoch_num = 10
-model_checkpoint = 'models/model_epoch=10.pth'  # place here a model's checkpoint path if you want to continue to train from there
-optimizer_checkpoint = 'models/optimizer_epoch=10.pth'  # place here an optimizer's checkpoint path if you want to continue to train from it
+current_epoch_num = 13
+model_checkpoint = 'models/model_epoch=13.pth'  # place here a model's checkpoint path if you want to continue to train from there
+optimizer_checkpoint = 'models/optimizer_epoch=13.pth'  # place here an optimizer's checkpoint path if you want to continue to train from it
 
 pitch_prediction_threshold = 0.8

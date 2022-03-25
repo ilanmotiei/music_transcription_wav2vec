@@ -11,7 +11,7 @@ class Transcriptor(nn.Module):
         super().__init__()
 
         self.wav2vec2 = AutoModel.from_pretrained(cnf.wav2vec_model)
-        self.wav2vec2.freeze_feature_encoder()
+        # self.wav2vec2.freeze_feature_encoder()
         self.linear = nn.Linear(in_features=cnf.wav2vec_model_embedding_dim, out_features=cnf.pitch_classes)
 
         torch.nn.init.xavier_uniform(self.linear.weight)
