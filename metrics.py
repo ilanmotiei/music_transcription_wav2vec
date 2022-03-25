@@ -7,10 +7,13 @@ def precision(target, prediction):
     inputs are two boolean tensors of the same size, indicating pitches' presence.
     """
 
-    try:
-        return torch.sum((target == prediction).masked_fill_(prediction == 0, 0)) / torch.sum(prediction)
-    except ZeroDivisionError:
-        return 1
+    result = torch.sum((target == prediction).masked_fill_(prediction == 0, 0)) / torch.sum(prediction)
+
+    if torch.all(torch.isnan(result)):
+        # torch.sum(prediction) == 0
+        return 0
+
+    return result
 
 
 def recall(target, prediction):
@@ -18,10 +21,13 @@ def recall(target, prediction):
     inputs are two boolean tensors of the same size, indicating pitches' presence.
     """
 
-    try:
-        return torch.sum((target == prediction).masked_fill_(target == 0, 0)) / torch.sum(target)
-    except ZeroDivisionError:
+    result = torch.sum((target == prediction).masked_fill_(target == 0, 0)) / torch.sum(target)
+
+    if torch.all(torch.isnan(result)):
+        # torch.sum(target) == 0
         return 1
+
+    return result
 
 
 if __name__ == "__main__":

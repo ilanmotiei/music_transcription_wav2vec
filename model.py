@@ -11,10 +11,11 @@ class Transcriptor(nn.Module):
         super().__init__()
 
         self.wav2vec2 = AutoModel.from_pretrained(cnf.wav2vec_model)
-        # self.wav2vec2.freeze_feature_encoder()
-        self.linear = nn.Linear(in_features=cnf.wav2vec_model_embedding_dim, out_features=cnf.pitch_classes)
+        self.wav2vec2.freeze_feature_encoder()
+        self.linear = nn.Linear(in_features=cnf.wav2vec_model_embedding_dim, out_features=2 * cnf.pitch_classes)
+        # self.linear = nn.Linear(in_features=cnf.wav2vec_model_embedding_dim, out_features=cnf.pitch_classes)
 
-        torch.nn.init.xavier_uniform(self.linear.weight)
+        torch.nn.init.xavier_uniform_(self.linear.weight)
         self.linear.bias.data.fill_(0.01)
 
     def forward(self, audio):
@@ -27,9 +28,12 @@ class Transcriptor(nn.Module):
         audio = (audio - mean) / (torch.sqrt(var) + 1e-08)
 
         embeddings = self.wav2vec2(audio).last_hidden_state
-        # ^ : shape = (batch_size, cnf.bins, cnf.wav2vec_model_embedding_dim)
+        # ^ : shape = (batch_size, cnf.bins / 2, cnf.wav2vec_model_embedding_dim)
 
-        logits = self.linear(embeddings)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
+        logits = self.linear(embeddings)  # shape = (batch_size, cnf.bins / 2, 2 * cnf.pitch_classes)
+
+        logits = logits.view(-1, cnf.bins, cnf.pitch_classes)
+        # shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
         return logits
 
@@ -40,12 +44,8 @@ class Transcriptor(nn.Module):
         :return: A boolean tensor of shape (batch_size, cnf.bins, cnf.pitch_classes) that indicates which pitches
                  are present at which bins.
         """
-
         probs = self.get_probs_from_logits(logits)
-
         return probs > pred_threshold
 
     def get_probs_from_logits(self, logits):
-
         return torch.sigmoid(logits)
-

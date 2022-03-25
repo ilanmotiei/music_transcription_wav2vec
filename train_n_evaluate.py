@@ -13,6 +13,7 @@ import os
 import sys
 import numpy as np
 from torch.nn.utils import clip_grad_value_
+from metrics import precision, recall
 
 
 def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader):
@@ -41,7 +42,7 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
 
                 optimizer.step()
                 optimizer.zero_grad()
-                torch.cuda.empty_cache()
+                # torch.cuda.empty_cache()
 
             epoch_loss += loss.item() * cnf.update_every_n_batches
 
@@ -72,12 +73,11 @@ def validate(model, epoch, validation_dataloader):
 
     loss = 0
     aps_accuracy = 0
-    f1_accuracy = 0
     recall_accuracy = 0
     precision_accuracy = 0
 
     with torch.set_grad_enabled(False):
-        for batch_idx, (batch_audios, batch_target_labels) in enumerate(validation_dataloader):
+        for batch_idx, (batch_audios, batch_target_labels) in tqdm.tqdm(enumerate(validation_dataloader)):
             batch_audios = batch_audios.to(cnf.device)  # shape = (batch_size, cnf.unit_duration * cnf.sampling_rate)
             batch_target_labels = batch_target_labels.to(cnf.device)  # shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
@@ -93,13 +93,15 @@ def validate(model, epoch, validation_dataloader):
             numpyed_batch_probs = batch_probs.cpu().detach().numpy().astype(float)
             curr_batch_size = numpyed_batch_targets.shape[0]
 
-            if torch.sum(batch_predictions) > 0:
-                batch_precision = torch.sum((batch_target_labels == batch_predictions).masked_fill(batch_predictions == 0, 0)) / torch.sum(batch_predictions)
-            else:
-                batch_precision = 1
+            # if torch.sum(batch_predictions) > 0:
+            #     batch_precision = torch.sum((batch_target_labels == batch_predictions).masked_fill(batch_predictions == 0, 0)) / torch.sum(batch_predictions)
+            # else:
+            #     batch_precision = 1
 
-            batch_recall = torch.sum((batch_target_labels == batch_predictions).masked_fill(batch_target_labels == 0, 0)) / torch.sum(batch_target_labels)
-            batch_f1 = batch_precision * batch_recall / (batch_precision + batch_recall)
+            #batch_recall = torch.sum((batch_target_labels == batch_predictions).masked_fill(batch_target_labels == 0, 0)) / torch.sum(batch_target_labels)
+
+            batch_recall = recall(target=batch_target_labels, prediction=batch_predictions)
+            batch_precision = precision(target=batch_target_labels, prediction=batch_predictions)
 
             batch_aps_accuracy = 0
             for idx in range(curr_batch_size):
@@ -110,15 +112,15 @@ def validate(model, epoch, validation_dataloader):
 
             loss += batch_loss.item()
             aps_accuracy += batch_aps_accuracy
-            f1_accuracy += batch_f1
             recall_accuracy += batch_recall
             precision_accuracy += batch_precision
 
     loss /= len(validation_dataloader)
     aps_accuracy /= len(validation_dataloader)
-    f1_accuracy /= len(validation_dataloader)
+
     recall_accuracy /= len(validation_dataloader)
     precision_accuracy /= len(validation_dataloader)
+    f1_accuracy = recall_accuracy * precision_accuracy / (recall_accuracy + precision_accuracy)
 
     print("Results: --------------- ", file=cnf.logs_file)
 
@@ -150,13 +152,13 @@ if __name__ == "__main__":
 
     validation_dataset = MusicNetDataset(train=False)
     validation_dataloader = DataLoader(dataset=validation_dataset,
-                                       batch_size=cnf.batch_size,
+                                       batch_size=1,  # when validating we should have batch_size set to 1 because of some bug in wav2vec
                                        shuffle=False,
                                        num_workers=cnf.num_workers)
 
-    for epoch_idx in range(cnf.current_epoch_num, cnf.current_epoch_num + cnf.epochs):
+    for epoch in range(cnf.current_epoch_num, cnf.current_epoch_num + cnf.epochs):
         train_epoch(model=model,
-                    epoch=epoch_idx + 1,
+                    epoch=epoch,
                     optimizer=optimizer,
                     train_dataloader=train_dataloader,
                     validation_dataloader=validation_dataloader)
@@ -164,9 +166,9 @@ if __name__ == "__main__":
         if not path.exists(cnf.models_dir):
             os.mkdir(cnf.models_dir)
 
-        torch.save(model.state_dict(), f'{cnf.models_dir}/model_epoch={epoch_idx + 1}.pth')
-        torch.save(optimizer.state_dict(), f'{cnf.models_dir}/optimizer_epoch={epoch_idx + 1}.pth')
+        torch.save(model.state_dict(), f'{cnf.models_dir}/model_epoch={epoch + 1}.pth')
+        torch.save(optimizer.state_dict(), f'{cnf.models_dir}/optimizer_epoch={epoch + 1}.pth')
 
         validate(model=model,
-                 epoch=epoch_idx,
+                 epoch=epoch,
                  validation_dataloader=validation_dataloader)

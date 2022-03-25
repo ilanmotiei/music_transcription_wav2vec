@@ -127,7 +127,7 @@ def load_dataset(root_dir, train):
 
     relevant_files = [filename for filename in os.listdir(data_dir) if len(filename.split('.')[0].split('_')) == 1]
     # ^ : ignoring the files at the dataset that are translated versions (created with the music translation network)
-
+    # relevant_files = [filename for filename in os.listdir(data_dir)]
 
     loaded = 0
     for file in tqdm.tqdm(relevant_files):
