@@ -73,17 +73,17 @@ def preprocess_df(df, units_in_file):
             seconds_dicts[unit_idx]['absolute_end_time'].append(absolute_end_time)
             seconds_dicts[unit_idx]['note'].append(pitch)
             
-    seconds_dfs = []
+    seconds_sparse_tensors = []
             
     for second_dict in seconds_dicts:
-        seconds_dfs += [pd.DataFrame.from_dict(second_dict)]
+        seconds_sparse_tensors += [pd.DataFrame.from_dict(second_dict)]
 
-    return seconds_dfs
+    return seconds_sparse_tensors
 
 
 def labels_df_to_tensor(labels_df, absolute_start_time):
     """
-    :param absolute_start_time: of that unit at the audio file it is part of.
+    :param absolute_start_time: of that *unit* at the audio file it is part of.
     :param labels_df: A pandas.DataFrame containing labels for a corresponding unit of an audio file,
                       containing the following columns:
                         * absolute_start_time
@@ -98,15 +98,14 @@ def labels_df_to_tensor(labels_df, absolute_start_time):
     bin_duration = cnf.unit_duration / cnf.bins  # The amount of time (in seconds) that each bin equals to.
 
     for bin in range(cnf.bins):
-        bin_start_time = bin_duration * bin + absolute_start_time
-        bin_end_time = bin_duration * (bin + 1) + absolute_start_time
+        bin_start_time = 1/4 + bin_duration * bin + absolute_start_time
+        bin_end_time = bin_duration * (bin + 1) + absolute_start_time - 1/4
 
         for _, row in labels_df.iterrows():
             if (bin_start_time >= row['absolute_start_time']) and (bin_end_time <= row['absolute_end_time']):
                 # The row contains a note that was played during that bin
                 pitch_level = int(row['note'])
                 pitch_class = pitch_level - 1
-
                 t[bin, pitch_class] = True
 
     return t

@@ -14,6 +14,7 @@ import sys
 import numpy as np
 from torch.nn.utils import clip_grad_value_
 from metrics import precision, recall
+from torch.optim.radam import RAdam
 
 
 def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader):
@@ -42,7 +43,7 @@ def train_epoch(model, epoch, optimizer, train_dataloader, validation_dataloader
 
                 optimizer.step()
                 optimizer.zero_grad()
-                # torch.cuda.empty_cache()
+                torch.cuda.empty_cache()
 
             epoch_loss += loss.item() * cnf.update_every_n_batches
 
@@ -73,8 +74,8 @@ def validate(model, epoch, validation_dataloader):
 
     loss = 0
     aps_accuracy = 0
-    recall_accuracy = 0
-    precision_accuracy = 0
+    recall_accuracy = np.zeros(shape=(len(cnf.pitch_prediction_thresholds), ))
+    precision_accuracy = np.zeros(shape=(len(cnf.pitch_prediction_thresholds), ))
 
     with torch.set_grad_enabled(False):
         for batch_idx, (batch_audios, batch_target_labels) in tqdm.tqdm(enumerate(validation_dataloader)):
@@ -87,29 +88,26 @@ def validate(model, epoch, validation_dataloader):
             batch_probs = model.get_probs_from_logits(batch_logits)
             # ^ : shape = (batch_size, cnf.bins, cnf.pitch_classes)
 
-            batch_predictions = batch_probs > cnf.pitch_prediction_threshold
+            # ----- Calculating Recall and Precision for every threshold -----
+            batch_recall = np.empty(shape=(len(cnf.pitch_prediction_thresholds), ))
+            batch_precision = np.empty(shape=(len(cnf.pitch_prediction_thresholds), ))
 
+            for i, threshold in enumerate(cnf.pitch_prediction_thresholds):
+                batch_predictions = batch_probs > threshold
+                batch_recall[i] = recall(target=batch_target_labels, prediction=batch_predictions)
+                batch_precision[i] = precision(target=batch_target_labels, prediction=batch_predictions)
+
+            # ----- Calculating APS -----
             numpyed_batch_targets = batch_target_labels.cpu().detach().numpy().astype(int)
             numpyed_batch_probs = batch_probs.cpu().detach().numpy().astype(float)
-            curr_batch_size = numpyed_batch_targets.shape[0]
-
-            # if torch.sum(batch_predictions) > 0:
-            #     batch_precision = torch.sum((batch_target_labels == batch_predictions).masked_fill(batch_predictions == 0, 0)) / torch.sum(batch_predictions)
-            # else:
-            #     batch_precision = 1
-
-            #batch_recall = torch.sum((batch_target_labels == batch_predictions).masked_fill(batch_target_labels == 0, 0)) / torch.sum(batch_target_labels)
-
-            batch_recall = recall(target=batch_target_labels, prediction=batch_predictions)
-            batch_precision = precision(target=batch_target_labels, prediction=batch_predictions)
 
             batch_aps_accuracy = 0
-            for idx in range(curr_batch_size):
-                batch_aps_accuracy += average_precision_score(y_true=numpyed_batch_targets[idx],
-                                                              y_score=numpyed_batch_probs[idx])
+            for target, probs in zip(numpyed_batch_targets, numpyed_batch_probs):
+                batch_aps_accuracy += average_precision_score(y_true=target, y_score=probs)
 
-            batch_aps_accuracy /= curr_batch_size
+            batch_aps_accuracy /= target.shape[0]  # averaging over the elements in the batch
 
+            # ----- Aggregating -----
             loss += batch_loss.item()
             aps_accuracy += batch_aps_accuracy
             recall_accuracy += batch_recall
